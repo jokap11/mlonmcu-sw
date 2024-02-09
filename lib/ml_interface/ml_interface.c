@@ -27,13 +27,7 @@ __attribute__((weak)) int mlif_handle_result(void *model_output_ptr, size_t mode
   static int num_done = 0;
   int ret = 0;
 
-  if (num_data_buffers_out == 0) {
-    return 0;
-  }
-
-  if (num_done < num_data_buffers_out) {
-    ret = mlif_process_output(model_output_ptr, model_output_sz, data_buffers_out[num_done], data_size_out[num_done]);
-  }
+  ret = mlif_process_output(model_output_ptr, model_output_sz, data_buffers_out[num_done], data_size_out[num_done]);
 
   num_done++;
   return ret;
