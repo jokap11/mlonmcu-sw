@@ -22,19 +22,19 @@ int main() {
   if (ret) {
     goto cleanup;
   }
+#ifdef MLONMCU_SKIP_CHECK
   start_bench(RUN);
   ret = mlonmcu_run();
   stop_bench(RUN);
   if (ret) {
     goto cleanup;
   }
-  // TODO: time check
-#ifndef MLONMCU_SKIP_CHECK
+#else  // !MLONMCU_SKIP_CHECK
   ret = mlonmcu_check();
   if (ret) {
     goto cleanup;
   }
-#endif  // !MLONMCU_SKIP_CHECK
+#endif
   // start_bench(DEINIT);
   ret = mlonmcu_deinit();
   // stop_bench(DEINIT);
